@@ -20,10 +20,9 @@
 
     <label for="baber">Выбор парикмахера</label>
   <select name="baber" class="form-control">
-    <option value="none" selected>Выберите парикмахера...</option>
-    <option value="Петрович">Петрович</option>
-    <option value="Макарыч">Макарыч</option>
-    <option value="Федорыч">Федорыч</option>
+    <option <%=@barber == 'Петрович' ? 'selected' : '' %>>Петрович</option>
+    <option <%=@barber == 'Макарыч' ? 'selected' : '' %>>Макарыч</option>
+    <option <%=@barber == 'Федорыч' ? 'selected' : '' %>>Федорыч</option>
   </select>
 
   <div class="form-group">
