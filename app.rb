@@ -4,18 +4,18 @@ require 'sinatra/reloader'
 require 'sqlite3'
 
 configure do
-    @db = SQLite3::Database.new 'barbershop.db'
-    @db.execute 'CREATE TABLE IF NOT EXISTS
-     "Users"
-     (
-     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-      "username" TEXT,
-       "phone" TEXT,
-        "datestamp" TEXT,
-         "barber" TEXT,
-          "color" TEXT
-          )'
-end
+    db = get_db
+	db.execute 'CREATE TABLE IF NOT EXISTS
+	"Users"
+	(
+	"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"username" TEXT,
+	"Phone" TEXT,
+	"datestamp" TEXT,
+	"barber" TEXT,
+	"color" TEXT
+	)'
+end	
 
 
 get '/' do
@@ -65,6 +65,20 @@ hh = { :username => 'Введите имя',
        		    return erb :visit
        		end
 
+       		db = get_db
+            db.execute 'insert into
+            Users
+       		(
+       		username,
+       		phone,
+       		datestamp,
+       		barber,
+       		color
+       		)
+       		values(?,?,?,?,?)',[@username,@phone,@datetime,@baber,@color]
+
+
+
 
 		
 	
@@ -78,6 +92,11 @@ hh = { :username => 'Введите имя',
 
 	erb :message
 end
+
+def get_db
+	return SQLite3::Database.new 'barbershop.db'
+end	
+
 
 
 get '/contacts' do
