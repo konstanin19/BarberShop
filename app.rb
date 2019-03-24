@@ -87,12 +87,16 @@ hh = { :username => 'Введите имя',
 	erb :message
 end
 
-def get_db
-	return SQLite3::Database.new 'barbershop.db'
-end	
-
-
+get '/showusers' do
+ erb "Hello World"
+end
 
 get '/contacts' do
 	erb :contacts
 end
+
+def get_db
+	db = SQLite3::Database.new 'barbershop.db'
+	db.results_as_hash = true
+    return db
+end	
