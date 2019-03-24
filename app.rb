@@ -3,19 +3,19 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
-configure do
-    db = get_db
-	db.execute 'CREATE TABLE IF NOT EXISTS
-	"Users"
-	(
-	"id" INTEGER PRIMARY KEY AUTOINCREMENT,
-	"username" TEXT,
-	"Phone" TEXT,
-	"datestamp" TEXT,
-	"barber" TEXT,
-	"color" TEXT
-	)'
-end	
+#configure do
+  #  db = get_db
+#	db.execute 'CREATE TABLE IF NOT EXISTS
+#	"Users"
+#	(
+#	"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+#	"username" TEXT,
+#	"Phone" TEXT,
+#	"datestamp" TEXT,
+#	"barber" TEXT,
+#	"color" TEXT
+#	)'
+#end	
 
 
 get '/' do
@@ -77,18 +77,12 @@ hh = { :username => 'Введите имя',
        		)
        		values(?,?,?,?,?)',[@username,@phone,@datetime,@baber,@color]
 
-
-
-
-		
-	
-
-	@title = 'Thank you!'
+    @title = 'Thank you!'
 	@message = "Дорогой #{@username}, вы записались #{@datetime} к парикмахеру #{@baber},цвет краски: #{@color}"
 
-	f = File.open 'users.txt', 'a'
-	f.write "User: #{@username}, Phone: #{@phone}, Date and time: #{@datetime} ,Baber:#{@baber}, Color:#{@color}"
-	f.close
+	#f = File.open 'users.txt', 'a'
+	#f.write "User: #{@username}, Phone: #{@phone}, Date and time: #{@datetime} ,Baber:#{@baber}, Color:#{@color}"
+	#f.close
 
 	erb :message
 end
