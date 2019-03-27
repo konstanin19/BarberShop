@@ -3,19 +3,25 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
-#configure do
-  #  db = get_db
-#	db.execute 'CREATE TABLE IF NOT EXISTS
-#	"Users"
-#	(
-#	"id" INTEGER PRIMARY KEY AUTOINCREMENT,
-#	"username" TEXT,
-#	"Phone" TEXT,
-#	"datestamp" TEXT,
-#	"barber" TEXT,
-#	"color" TEXT
-#	)'
-#end	
+def get_db
+	db = SQLite3::Database.new 'barbershop.db'
+	db.results_as_hash = true
+    return db
+end	
+
+configure do
+  db = get_db
+	db.execute 'CREATE TABLE IF NOT EXISTS
+	"Users"
+	(
+	"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"username" TEXT,
+	"Phone" TEXT,
+	"datestamp" TEXT,
+	"barber" TEXT,
+	"color" TEXT
+	)'
+end	
 
 
 get '/' do
@@ -95,8 +101,8 @@ get '/contacts' do
 	erb :contacts
 end
 
-def get_db
-	db = SQLite3::Database.new 'barbershop.db'
-	db.results_as_hash = true
-    return db
-end	
+#def get_db
+#	db = SQLite3::Database.new 'barbershop.db'
+#	db.results_as_hash = true
+#    return db
+#end	
