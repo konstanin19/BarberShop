@@ -94,7 +94,7 @@ hh = { :username => 'Введите имя',
 end
 
 get '/showusers' do
- erb "Hello World"
+ erb :showusers
 end
 
 get '/contacts' do
